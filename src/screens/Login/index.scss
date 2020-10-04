@@ -1,0 +1,26 @@
+.Login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  &__header{
+  margin-bottom: 200px;
+  }
+  &__input{
+  height: 30px;
+  margin: 5px;
+  width: 250px;
+  border-radius: 5px;
+  }
+  &__submit{
+    width: 250px;
+    height: 35px;
+    margin: 5px;
+    border-radius: 5px;
+    background: blue;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+  }
+}
