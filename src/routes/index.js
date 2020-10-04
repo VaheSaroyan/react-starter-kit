@@ -1,11 +1,14 @@
-import React, {Suspense} from "react";
+import React from "react";
 import {BrowserRouter as Router, Switch} from "react-router-dom";
-import {PrivateRoute, PublicRoute, AllRoutes404} from "../internals";
+import loadable from '@loadable/component'
 import routes from "./routes";
-import LoadingIndicator from "../components/LoadingIndicator";
+
+
+const AllRoutes404 = loadable(() => import('../internals/routes/middleware/AllRoutes404'))
+const PrivateRoute = loadable(() => import('../internals/routes/middleware/PrivateRoute'))
+const PublicRoute = loadable(() => import('../internals/routes/middleware/PublicRoute'))
 
 const Routes = () => (
-    <Suspense fallback={<LoadingIndicator/>}>
         <Router>
             <Switch>
                 {routes.map((route, i) => {
@@ -17,7 +20,6 @@ const Routes = () => (
                 <AllRoutes404/>
             </Switch>
         </Router>
-    </Suspense>
 );
 
 export default Routes;

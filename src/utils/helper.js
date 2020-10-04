@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import loadable from '@loadable/component'
 
 export const withParams = (routes) => {
   return routes.map((item) => {
@@ -9,7 +9,7 @@ export const withParams = (routes) => {
       ...params,
       exact: true,
       key: ID(),
-      component: lazy(() => import(`../screens/${item.screen}`)),
+      component: loadable(() => import(`../screens/${item.screen}`)),
     };
   });
 };
@@ -52,3 +52,12 @@ export const serialize = (form) => {
   }
   return serialized;
 };
+
+export const removeConsole = () => {
+    Object.keys(console).forEach(item => {
+        if (typeof console[item] === "function") {
+            console[item] = noop
+        }
+    })
+}
+export const noop = () => {}

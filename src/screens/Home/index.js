@@ -1,7 +1,7 @@
 import React from "react";
-import { logout } from "../../store/reducers/user";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../../store/reducers/user";
 
 const Home = () => {
   const { username, password, isAuthenticated } = useSelector(
