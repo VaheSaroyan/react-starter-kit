@@ -9,12 +9,21 @@ const Login = () => {
     username: "",
     password: "",
   });
-
+    const [error,setError] = React.useState('')
   const handleChange = (e) =>
     setUserData({ ...userData, [e.target.name]: e.target.value });
 
-  const validate = () =>
-    !!(userData.username.length && userData.password.length);
+  const validate = () => {
+      if(!userData.username.length){
+          setError('username')
+          return
+      }   if(!userData.password.length){
+          setError('password')
+          return
+      }
+    return true;
+  }
+
 
   return (
     <div className="Login">
@@ -27,7 +36,7 @@ const Login = () => {
         onChange={handleChange}
         name="username"
         id="username"
-        style={!validate() ? { borderColor: "red" } : null}
+        style={error === 'username' ? { borderColor: "red" } : null}
       />
       <label htmlFor="password">password</label>
       <input
@@ -37,7 +46,7 @@ const Login = () => {
         onChange={handleChange}
         name="password"
         id="password"
-        style={!validate() ? { borderColor: "red" } : null}
+        style={error === 'password' ? { borderColor: "red" } : null}
       />
       <button
         onClick={() => (validate() ? dispatch(login(userData)) : null)}
