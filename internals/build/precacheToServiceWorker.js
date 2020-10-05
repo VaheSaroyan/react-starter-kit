@@ -1,20 +1,20 @@
 const fs = require('fs');
 const path = require('path');
 const pathToEntry = './build/service-worker.js';
-const precacheManifestPath = './build' + fromDir('./build', '.js')
+const preCacheManifestPath = './build' + fromDir('./build', '.js')
 const splitBy = path => `importScripts(
   "${path}"
 );`;
 const builtJsContent = fs.readFileSync(pathToEntry).toString();
-const precacheManifest = fs.readFileSync(precacheManifestPath).toString();
+const preCacheManifest = fs.readFileSync(preCacheManifestPath).toString();
 const parts = builtJsContent.split(splitBy(fromDir('./build', '.js')));
 
 const fileWithPreload = [
     parts[0],
-    precacheManifest,
+    preCacheManifest,
     parts[1]
 ];
-
+console.log(fromDir('./build', '.js'));
 
 function fromDir(startPath, filter) {
 
@@ -23,15 +23,16 @@ function fromDir(startPath, filter) {
         return;
     }
 
-    var files = fs.readdirSync(startPath);
-    for (var i = 0; i < files.length; i++) {
-        var filename = path.join(startPath, files[i]);
-        var stat = fs.lstatSync(filename);
+    const files = fs.readdirSync(startPath);
+    for (let i = 0; i < files.length; i++) {
+        const filename = path.join(startPath, files[i]);
+        const stat = fs.lstatSync(filename);
         if (stat.isDirectory()) {
             fromDir(filename, filter); //recurse
         } else if (filename.indexOf(filter) >= 0) {
-            if (isPrecache(filename)) {
-                return filename.replace('build\\', '/')
+            if (isPreCache(filename)) {
+                return filename.replace('build', '')
+                // return filename.replace('build\\', '/')
             }
         }
         ;
@@ -39,7 +40,7 @@ function fromDir(startPath, filter) {
     ;
 };
 
-function isPrecache(filename) {
+function isPreCache(filename) {
     return filename.match('precache-manifest')
 }
 
@@ -47,7 +48,7 @@ fs.writeFileSync(pathToEntry, fileWithPreload.join(''));
 
 
 try {
-    fs.unlinkSync(precacheManifestPath)
+    fs.unlinkSync(preCacheManifestPath)
     //file removed
 } catch(err) {
     console.error(err)
