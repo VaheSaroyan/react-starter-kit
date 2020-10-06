@@ -1,12 +1,13 @@
 import React from "react";
-import {BrowserRouter as Router, Switch} from "react-router-dom";
 import loadable from '@loadable/component'
 import routes from "./routes";
 
 
-const AllRoutes404 = loadable(() => import('../internals/routes/middleware/AllRoutes404'))
-const PrivateRoute = loadable(() => import('../internals/routes/middleware/PrivateRoute'))
-const PublicRoute = loadable(() => import('../internals/routes/middleware/PublicRoute'))
+const AllRoutes404 = loadable(() => import('../internals/routes/middleware/AllRoutes404'));
+const PrivateRoute = loadable(() => import('../internals/routes/middleware/PrivateRoute'));
+const PublicRoute = loadable(() => import('../internals/routes/middleware/PublicRoute'));
+const Switch = require('react-router-dom').Switch;
+const Router = require('react-router-dom').BrowserRouter;
 
 const Routes = () => (
         <Router>

@@ -14,7 +14,6 @@ const fileWithPreload = [
     preCacheManifest,
     parts[1]
 ];
-console.log(fromDir('./build', '.js'));
 
 function fromDir(startPath, filter) {
 
