@@ -1,19 +1,39 @@
-import React from "react";
+import React from 'react'
+import PropTypes from 'prop-types'
+import './index.scss'
 
-function LoadingIndicator(props) {
-  if (props.isLoading) {
-    if (props.timedOut) {
-      return <div>Loader timed out!</div>;
-    } else if (props.pastDelay) {
-      return <div>Loading...</div>;
-    } else {
-      return null;
+class Loading extends React.Component {
+    render() {
+        const backgroundColor = {
+            background: this.props.background
+        }
+        const loaderColor = {
+            background: this.props.loaderColor
+        }
+        if (this.props.loading) {
+            return (
+                <div className="loading-background" style={backgroundColor}>
+                    <div className="loading-bar" >
+                        <div className="loading-circle-1" style={loaderColor} />
+                        <div className="loading-circle-2" style={loaderColor} />
+                    </div>
+                </div>
+            )
+        }
+        return null
     }
-  } else if (props.error) {
-    return <div>Error! Component failed to load</div>;
-  } else {
-    return null;
-  }
 }
 
-export default LoadingIndicator;
+Loading.defaultProps = {
+    loading: false,
+    background: 'rgba(236, 240, 241, 0.7)',
+    loaderColor: '#e74c3c'
+}
+
+Loading.propTypes = {
+    loading: PropTypes.bool,
+    background: PropTypes.string,
+    loaderColor: PropTypes.string
+}
+
+export default Loading

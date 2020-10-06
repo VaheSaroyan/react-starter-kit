@@ -1,6 +1,9 @@
+import React from "react";
 import loadable from '@loadable/component'
 
+
 export const withParams = (routes) => {
+  const LoadingIndicator = loadable(() => import('components/LoadingIndicator'))
   return routes.map((item) => {
     const params = item.params;
     delete item.params;
@@ -9,7 +12,7 @@ export const withParams = (routes) => {
       ...params,
       exact: true,
       key: ID(),
-      component: loadable(() => import(`../screens/${item.screen}`)),
+        component: loadable(() => import(`../screens/${item.screen}`),{ fallback: <LoadingIndicator loading background="rgba(255,255,255,.5)" loaderColor="#3498db" />}),
     };
   });
 };
