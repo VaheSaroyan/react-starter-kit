@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../store/reducers/user";
+import { logout } from "../../api/auth";
 
 const Home = () => {
   const { username, password, isAuthenticated } = useSelector(

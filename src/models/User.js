@@ -1,7 +1,7 @@
 import Model from "../internals/Model";
 
 class User extends Model {
-  constructor(props) {
+  constructor(props = {}) {
     super(props);
 
     this.initialize(props);
@@ -9,10 +9,7 @@ class User extends Model {
 
   initialize(props) {
     super.initialize(props);
-    this.isAuthenticated = props.isAuthenticated || false;
-    this.name = props.name || "";
     this.username = props.username || "";
-    this.password = props.password || "";
   }
 }
 

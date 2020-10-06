@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../../store/reducers/user";
+import { login } from "../../api/auth";
 import "./index.scss";
 
 const Login = () => {

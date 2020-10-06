@@ -2,7 +2,7 @@ import moment from "moment";
 import _ from "lodash";
 
 class Model {
-  constructor(props) {
+  constructor(props ) {
     this.initialize(props);
   }
 
@@ -15,7 +15,6 @@ class Model {
 
   toJson() {
     const props = Object.assign({}, this);
-
     _.forOwn(props, (value, key) => {
       if (value instanceof moment) {
         props[key] = value.format("YYYY-MM-DD HH:mm:ss");
