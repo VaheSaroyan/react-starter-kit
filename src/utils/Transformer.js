@@ -1,15 +1,3 @@
-/* ============
- * Transformer
- * ============
- *
- * The base transformer.
- *
- * Transformers are used to transform the fetched data
- * to a more suitable format.
- * For instance, when the fetched data contains snake_cased values,
- * they will be camelCased.
- */
-
 import _ from 'lodash';
 
 export default class Transformer {

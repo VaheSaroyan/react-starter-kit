@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
 import {Redirect, Route} from "react-router-dom";
-import AutoLogout from "../../hoc/AutoLogout";
+import AutoLogout from "HOC/AutoLogout";
 
 const PrivateRoute = ({component: Component, ...rest}) => {
     const {isAuthenticated} = useSelector((state) => state.user);
@@ -32,6 +32,7 @@ if (process.env.NODE_ENV === 'development') {
         location: PropTypes.object,
     };
 }
+
 
 
 export default AutoLogout(PrivateRoute);

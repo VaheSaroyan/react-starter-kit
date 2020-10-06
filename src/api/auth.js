@@ -1,5 +1,5 @@
-import User from "../models/User";
-import {loginSuccess, logoutSuccess} from "../store/reducers/user";
+import User from "models/User";
+import {loginSuccess, logoutSuccess} from "store/reducers/user";
 
 export const login = ({ username, password }) => async (dispatch) => {
     try {

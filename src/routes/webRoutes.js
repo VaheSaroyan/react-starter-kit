@@ -1,4 +1,4 @@
-import { route, withParams } from "../utils/helper";
+import { route, withParams } from "utils/helper";
 
 const webRoutes = [
   route("/", "Home", { auth: true }),

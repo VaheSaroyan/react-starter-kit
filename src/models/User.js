@@ -1,4 +1,4 @@
-import Model from "../internals/Model";
+import Model from "./";
 
 class User extends Model {
   constructor(props = {}) {
