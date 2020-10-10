@@ -27,8 +27,6 @@
   "dependencies": {
     "@loadable/component": "^5.13.2",
     "@reduxjs/toolkit": "^1.4.0",
-    "lodash": "^4.17.20",
-    "moment": "^2.27.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -45,6 +43,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "prettier": "2.1.2",
     "prop-types": "^15.7.2",
     "redux-logger": "^3.0.6"
   }

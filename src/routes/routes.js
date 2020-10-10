@@ -1,3 +1,3 @@
-import webRoutes from "./webRoutes";
+import webRoutes from './webRoutes';
 
 export default [...webRoutes];

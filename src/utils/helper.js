@@ -1,9 +1,10 @@
-import React from "react";
-import loadable from '@loadable/component'
-
+import React from 'react';
+import loadable from '@loadable/component';
 
 export const withParams = (routes) => {
-  const LoadingIndicator = loadable(() => import('components/LoadingIndicator'))
+  const LoadingIndicator = loadable(() =>
+    import('components/LoadingIndicator'),
+  );
   return routes.map((item) => {
     const params = item.params;
     delete item.params;
@@ -12,7 +13,15 @@ export const withParams = (routes) => {
       ...params,
       exact: true,
       key: ID(),
-        component: loadable(() => import(`../screens/${item.screen}`),{ fallback: <LoadingIndicator loading background="rgba(255,255,255,.5)" loaderColor="#3498db" />}),
+      component: loadable(() => import(`../screens/${item.screen}`), {
+        fallback: (
+          <LoadingIndicator
+            loading
+            background="rgba(255,255,255,.5)"
+            loaderColor="#3498db"
+          />
+        ),
+      }),
     };
   });
 };
@@ -23,7 +32,7 @@ export const route = (path, screen, params = {}) => ({
   params,
 });
 
-export const ID = () => "_" + Math.random().toString(36).substr(2, 36);
+export const ID = () => '_' + Math.random().toString(36).substr(2, 36);
 
 export const serialize = (form) => {
   const serialized = {};
@@ -34,20 +43,20 @@ export const serialize = (form) => {
     if (
       !field.name ||
       field.disabled ||
-      field.type === "file" ||
-      field.type === "reset" ||
-      field.type === "submit" ||
-      field.type === "button"
+      field.type === 'file' ||
+      field.type === 'reset' ||
+      field.type === 'submit' ||
+      field.type === 'button'
     )
       continue;
 
-    if (field.type === "select-multiple") {
+    if (field.type === 'select-multiple') {
       for (let n = 0; n < field.options.length; n++) {
         if (!field.options[n].selected) continue;
         serialized[field.name] = field.options[n].value;
       }
     } else if (
-      (field.type !== "checkbox" && field.type !== "radio") ||
+      (field.type !== 'checkbox' && field.type !== 'radio') ||
       field.checked
     ) {
       serialized[field.name] = field.value;
@@ -57,10 +66,11 @@ export const serialize = (form) => {
 };
 
 export const removeConsole = () => {
-    Object.keys(console).forEach(item => {
-        if (typeof console[item] === "function") {
-            console[item] = noop
-        }
-    })
-}
-export const noop = () => {}
+  Object.keys(console).forEach((item) => {
+    if (typeof console[item] === 'function') {
+      console[item] = noop;
+    }
+  });
+};
+
+export const noop = () => {};
