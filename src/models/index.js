@@ -1,6 +1,5 @@
-
 class Model {
-  constructor(props ) {
+  constructor(props) {
     this.initialize(props);
   }
 
